@@ -120,6 +120,8 @@ func vaultReader(client Client) func(ctx echo.Context) error {
 			secret, err = client.ReadSpaceSecret(key)
 		case "service":
 			secret, err = client.ReadServiceSecret(key)
+		case "transit":
+			secret, err = client.ReadServiceTransit(key)
 		default:
 			err = fmt.Errorf("unsupported namespace: %s", namespace)
 		}
