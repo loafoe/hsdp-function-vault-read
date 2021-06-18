@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"strings"
 
 	vault "github.com/hashicorp/vault/api"
 	"github.com/labstack/echo/v4"
@@ -22,16 +23,24 @@ type Client struct {
 	SpaceSecretPath    string `json:"space_secret_path"`
 }
 
+func stripFirst(path string) string {
+	comps := strings.Split(path, "/")
+	if len(comps) > 1 {
+		return strings.Join(comps[1:], "/")
+	}
+	return ""
+}
+
 func (v *Client) ReadSpaceSecret(path string) (*vault.Secret, error) {
-	return v.Client.Logical().Read(v.SpaceSecretPath + "/" + path)
+	return v.Client.Logical().Read(stripFirst(v.SpaceSecretPath) + "/" + path)
 }
 
 func (v *Client) ReadServiceSecret(path string) (*vault.Secret, error) {
-	return v.Client.Logical().Read(v.ServiceSecretPath + "/" + path)
+	return v.Client.Logical().Read(stripFirst(v.ServiceSecretPath) + "/" + path)
 }
 
 func (v *Client) ReadServiceTransit(path string) (*vault.Secret, error) {
-	return v.Client.Logical().Read(v.ServiceTransitPath + "/" + path)
+	return v.Client.Logical().Read(stripFirst(v.ServiceTransitPath) + "/" + path)
 }
 
 func main() {
