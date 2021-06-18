@@ -126,8 +126,11 @@ func vaultReader(client Client) func(ctx echo.Context) error {
 			err = fmt.Errorf("unsupported namespace: %s", namespace)
 		}
 		if err != nil {
-			return err
+			return c.JSON(http.StatusBadRequest, map[string]interface{}{"message": err.Error()})
 		}
-		return c.JSON(http.StatusOK, secret.Data)
+		if secret != nil {
+			return c.JSON(http.StatusOK, secret.Data)
+		}
+		return c.JSON(http.StatusNoContent, "{}")
 	}
 }
