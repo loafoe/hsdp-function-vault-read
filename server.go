@@ -25,8 +25,8 @@ type Client struct {
 
 func stripFirst(path string) string {
 	comps := strings.Split(path, "/")
-	if len(comps) > 1 {
-		return strings.Join(comps[1:], "/")
+	if len(comps) > 2 {
+		return "/" + strings.Join(comps[2:], "/")
 	}
 	return ""
 }
