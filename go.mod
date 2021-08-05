@@ -12,7 +12,7 @@ require (
 	github.com/hashicorp/vault/sdk v0.2.0 // indirect
 	github.com/labstack/echo/v4 v4.5.0
 	github.com/pierrec/lz4 v2.6.1+incompatible // indirect
-	github.com/spf13/viper v1.8.0
+	github.com/spf13/viper v1.8.1
 	github.com/stretchr/testify v1.7.0
 	golang.org/x/crypto v0.0.0-20210616213533-5ff15b29337e // indirect
 	golang.org/x/net v0.0.0-20210614182718-04defd469f4e // indirect
