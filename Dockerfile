@@ -11,7 +11,7 @@ RUN go mod download
 COPY . .
 RUN go build -o server .
 
-FROM philipslabs/siderite:v0.11.3 AS siderite
+FROM philipslabs/siderite:v0.12.2 AS siderite
 
 FROM alpine:latest
 LABEL maintainer="andy.lo-a-foe@philips.com"
